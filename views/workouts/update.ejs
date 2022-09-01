@@ -1,0 +1,27 @@
+<%- include('../partials/header')  -%> 
+
+    <form action="/workouts/<%=workouts._id%>?_method=PUT" method="POST">
+        <%=workouts%>
+        <h1> Update "<%=workouts.name%>" Workout</h1>
+        <label>Enter Workout Name:
+            <input type="text" name="name" value="<%=workouts.name%>">
+        </label><br>
+        <label> Select Muscle Group:
+            <select name="muscleGroup" value="<%=workouts.muscleGroup%>">
+                <option value="Back">Back</option>
+                <option value="Biceps">Biceps</option>
+                <option value="Chest">Chest</option>
+                <option value="Triceps">Triceps</option>
+                <option value="Shoulders">Shoulders</option>
+                <option value="Legs">Legs</option>
+                <option value="Abs">Abs</option>
+                <option value="Misc">Misc</option>
+            </select>
+        </label><br>
+        <label>Enter Amount of Sets:
+            <input type="text" name="sets" value="<%=workouts.sets%>">
+        </label><br>
+        <input type="submit" value="Update Workout">
+    </form>
+</body>
+</html>

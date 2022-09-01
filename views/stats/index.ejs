@@ -1,0 +1,63 @@
+<%- include('../partials/header')  -%> 
+
+    <a href="/routines">Log Some Stats</a>
+    <h1> STATS </h1>
+
+   <% if (stats.length) { %>
+
+    <% stats.forEach(function(s){ %> 
+        
+        <% let counter = 1 %>
+
+       <% s.stRoutine.forEach(function (r){ %> 
+                <h3> Routine Name: <%= r.rtName %>  </h3>
+
+                
+                <p> Date: <%=s.stDate.toISOString()%> </p>
+
+
+        <% r.rtWorkouts.forEach(function (w){ %>
+            
+            <h3> Workout: <%= w.name %> </h3> 
+
+            <div class="weight-div">
+
+            <% let weights = s.weight %>
+            <% let wcounter = 1%>
+            <% let scounter = 1%>
+
+            <% weights.forEach(function (kg) { %>            
+                    <p class="weight-p">Weight <%=wcounter%>: <%= kg %></p>
+                    <%wcounter++ %>
+            <% }) %> 
+
+        </div>
+
+                <div class="weight-div">
+
+                <% let reps = s.reps %>
+                <% reps.forEach(function (count) { %>       
+                    <p class="reps-p"> Reps <%=scounter%>: <%= count %></p>
+                    <% }) %> 
+                    <% scounter++ %>
+                </div>
+                
+                
+            
+        <% }) %>
+                
+      <%  }) %> 
+    
+        <% counter++ %> 
+
+        <form action="/stats/<%= s.id %>?_method=DELETE" class="delete-form" method="POST">
+            <button type="submit">X</button>
+          </form>
+
+    <%})%>
+ <% } else { %>
+    <h1> NO STATS YET, GO WORKOUT! </h1> 
+ <% } %>
+
+</body>
+</html>

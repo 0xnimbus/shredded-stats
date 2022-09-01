@@ -1,0 +1,17 @@
+<%- include('../partials/header')  -%>    
+
+    <form action="/routines/<%=routines._id%>?_method=PUT" method="POST">
+        <h3> Update Routine "<%=routines.rtName%> </h3>
+        <label>Routine Name:
+            <input type="text" name="rtName" value="<%=routines.rtName%>">
+        </label><br>
+        <label> Select Workouts: <br>
+            <% workouts.forEach(function (w) { %> 
+                <input type="checkbox" name='rtWorkouts' value="<%=w._id%>"> 
+                <label for="rtWorkouts"> <%=w.name%> </label><br> 
+           <% }) %>
+        </label><br>
+        <input type="submit" value="Update Routine">
+    </form>
+</body>
+</html>

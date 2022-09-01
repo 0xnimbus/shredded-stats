@@ -1,0 +1,33 @@
+<%- include('../partials/header')  -%> 
+<a href="/workouts/new">Create New Workout</a>
+
+    <h1> WORKOUTS </h1> 
+     
+        <% if (workouts.length) { %>
+            <% let counter = 1 %> 
+            <% workouts.forEach(function(w) { %>
+                
+                <p class="lists"> #<%= counter %> </p>
+                <% counter++ %>
+                <p class="lists"> <%= w.name %> </p> 
+                <p class="lists"> <%= w.muscleGroup %> </p> 
+                <p class="lists"> <%= w.sets %> </p> 
+                
+                <form action="/workouts/<%= w.id %>?_method=DELETE" class="delete-form" method="POST">
+                    <button type="submit">X</button>
+                  </form>
+                  <a href="/workouts/<%= w.id %>/update" > <button>Update</button> </a> <br>
+                  
+
+            <% }) %>
+            
+            <% } else {%>
+
+                <h1> No workouts yet </h1> 
+
+                <% }%>
+        
+
+        
+</body>
+</html>

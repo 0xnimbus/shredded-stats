@@ -1,0 +1,45 @@
+<%- include('../partials/header')  -%> 
+
+<h1> NEW STATS</h1>
+
+ 
+
+    <% routines.forEach(function (r){ %>
+
+        
+        <form action="/stats/<%=r._id%>" method="POST">
+        <h1 class="stats-new"> INPUT STATS FOR <%=r.rtName%> ROUTINE</h1>
+        <input type="hidden" value="<%=r.rtName%>" name="rtName">
+
+        <%= r %>
+        <h2>  Routine ID = <%=r._id %> </h2>
+        
+        <label>Workout Date:
+            <input type="datetime-local" name="stDate" value="datetime-local">
+        </label><br>
+        
+         <% let workouts = r.rtWorkouts %>
+         
+         <% workouts.forEach(function (n) { %> 
+             <p> <%= n.name %> </p>
+
+            <% let sets = n.sets %>
+            <% let sText = 1 %>
+            <% while (sets > 0) { %> 
+                <div>
+                <input type="text" placeholder="Set <%=sText%> Weight"class="sets" name="reps"> 
+                <input type="text" placeholder="Set <%=sText%> Reps"class="sets" name="weight">
+                
+            </div> 
+                <% sText++ %>
+                <% sets-- %> 
+            <% } %>
+
+
+         <% }) %>
+    <% }) %> 
+            </br> 
+    <input type="submit" value="Submit Stats">
+</form>
+</body>
+</html>
