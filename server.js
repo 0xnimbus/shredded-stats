@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override')
+require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 var workoutsRouter = require('./routes/workouts');

@@ -114,8 +114,10 @@ async function update(req, res) {
     // req.body.rtWorkouts.forEach(async function (w){
     //     await 
     // })
-
-   await Routine.findByIdAndUpdate(req.params.id, {rtName: req.body.rtName})
+   req.body.rtWorkouts.forEach(async function (w) {
+    
+   })
+   await Routine.findById(req.params.id, {rtName: req.body.rtName})
    
    
    
