@@ -17,7 +17,7 @@
 
 ![Track Your Stats](https://i.imgur.com/vW6VnRw.png)  
 
-### After a routine is created, you can then log your workouts as stats. These stats will allow you to input data based on the  
+### After a routine is created, you can then log your workouts as stats. These stats will allow you to input data based on the
 ### routine you have created. 
 
 ## Techonologies Used
@@ -34,13 +34,13 @@
 ## Project Planning Was Done With Notion 
 [Click Here To View Board](https://i.imgur.com/OegiKYu.png)  
 
-### There is a bug right now that I am aware of so that would be the highest urgency task. 
+### -There is a bug right now that I am aware of so that would be the highest urgency task. 
 
 ### -After that, the first thing I work on for this project is to finish adding the update methods to Stats and Routines. 
 
-### The next I would like to include is a user function. It seemed really daunting in the beginning but now I am much  
+### -The next I would like to include is a user function. It seemed really daunting in the beginning but now I am much  
 ### more comfortable with with the whole MEN stack. 
 
-### Icebox features:  
+## Icebox features:  
 ### -Creating a score for users based on stats from the workout  
 ### -Have new stats populate the inputs with the stats from the last workout as a QOL feature
