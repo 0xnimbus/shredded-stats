@@ -58,6 +58,7 @@ function create(req, res) {
             stat.save(function (err){
                 if (err) {
                     console.log("STATS CREATE ROUTINE SAVE ERROR " + err)
+                    res.redirect('/stats')
                 } else {
                     console.log("CREATED NEW STATS SUCCESS ")
                     console.log(stat)
@@ -73,6 +74,6 @@ async function deleteOne(req, res) {
 
     await Stat.findByIdAndDelete(req.params.id)
  
-     res.redirect('/routines')
+     res.redirect('/stats')
      console.log("DELETE ONE WITH ID OF " + req.params.id)
 }

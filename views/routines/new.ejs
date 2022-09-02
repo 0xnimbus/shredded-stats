@@ -1,16 +1,45 @@
 <%- include('../partials/header')  -%> 
- 
+
+
+     
+<div class="root-div">
+
+    <div class="page-title">
+        <h1 class="page-title">CREATE A ROUTINE</h1>
+    </div>
+    <div class="div-text">
+        <% if (workouts.length) { %>
+            
     <form action="/routines" method="POST">
-        <label>Routine Name:
-            <input type="text" name="rtName">
-        </label><br>
-        <label> Select Workouts: <br>
-                <% workouts.forEach(function (w) { %> 
-                    <input type="checkbox" name='rtWorkouts' value="<%=w.name%>"> 
-                    <label for="rtWorkouts"> <%=w.name%> </label><br> 
-               <% }) %>
-        </label><br>
-        <input type="submit" value="Submit Workout">
+        
+        <div class="body-div">
+        <div class="input-div">
+            <label  class="input-label">Enter Routine Name:
+                <input type="text" name="rtName" class="inputs">
+            </label><br>
+        </div>
+        <div class="input-label" id="selectworkouts"> <label > Select Workouts: <br> 
+                
+            <% workouts.forEach(function (w) { %> 
+                
+                <input class="input-label"  type="checkbox" name='rtWorkouts' value="<%=w.name%>"> 
+                <label  class="lists" id="rt-list" for="rtWorkouts"> <%=w.name%> </label><br> 
+           <% }) %>
+    </label><br>
+</div>
+        <div id="wk-submit-button">
+        <input type="submit" value="Submit Workout" id="submit-button" class="create-button"> 
+    </div>
+        </div>
+        </div>
+    
     </form>
+
+        <% } else { %>
+        <h3> YOU DONT HAVE ANY WORKOUTS </h3>
+        <a href="/workouts/new"> <button>Click Here To Create A Workout </button>  </a>
+    <% } %>
+</div>
+</div>
 </body>
 </html>

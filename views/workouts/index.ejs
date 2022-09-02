@@ -1,33 +1,42 @@
 <%- include('../partials/header')  -%> 
-<a href="/workouts/new">Create New Workout</a>
 
-    <h1> WORKOUTS </h1> 
+<div class="root-rt-div">
+    <div class="div-text">
+    <h1 class="page-title"> WORKOUTS </h1> 
+    <div class='create-div'>
+    <a href="/workouts/new" > <button class="create-button"> Create New Workout </button> </a> <br> 
+</div>
      
         <% if (workouts.length) { %>
             <% let counter = 1 %> 
             <% workouts.forEach(function(w) { %>
-                
-                <p class="lists"> #<%= counter %> </p>
+                <div class="body-div">
+                <div id="title-div">
+                    <p class="counter"> #<%= counter %> </p>
                 <% counter++ %>
-                <p class="lists"> <%= w.name %> </p> 
-                <p class="lists"> <%= w.muscleGroup %> </p> 
-                <p class="lists"> <%= w.sets %> </p> 
-                
-                <form action="/workouts/<%= w.id %>?_method=DELETE" class="delete-form" method="POST">
-                    <button type="submit">X</button>
+                <p class="counter"> <%= w.name %> </p> <br>
+            </div>
+                <p class="lists"> Muscle Group: <%= w.muscleGroup %> </p> <br>
+                <p class="lists"> Sets: <%= w.sets %> </p> <br>
+                <div class="button-div">
+                <a href="/workouts/<%= w.id %>/update" > <button class="update-button">Update</button> </a> 
+                <form action="/workouts/<%= w.id %>?_method=DELETE" class="delete-button"  method="POST">
+                    <button type="submit" class="real-delete">Delete</button>
                   </form>
-                  <a href="/workouts/<%= w.id %>/update" > <button>Update</button> </a> <br>
+                </div>
+                </div>
                   
+
 
             <% }) %>
             
             <% } else {%>
 
-                <h1> No workouts yet </h1> 
+                <h1 class="none"> No workouts yet </h1> 
 
                 <% }%>
-        
-
+            </div>
+            </div>
         
 </body>
 </html>

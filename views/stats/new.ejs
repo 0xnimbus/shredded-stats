@@ -1,34 +1,34 @@
 <%- include('../partials/header')  -%> 
 
-<h1> NEW STATS</h1>
-
- 
-
+    <div id="create-title">
+<h1 class="page-title"> LOG SOME STATS</h1>
+</div>
+    <div class="root-div"> 
+        <div class="div-text">
     <% routines.forEach(function (r){ %>
-
+        
         
         <form action="/stats/<%=r._id%>" method="POST">
-        <h1 class="stats-new"> INPUT STATS FOR <%=r.rtName%> ROUTINE</h1>
-        <input type="hidden" value="<%=r.rtName%>" name="rtName">
+            <div class="body-div">
+        <h1 class="stats-new"> LOG STATS FOR "<%=r.rtName%>" ROUTINE</h1>
 
-        <%= r %>
-        <h2>  Routine ID = <%=r._id %> </h2>
-        
-        <label>Workout Date:
-            <input type="datetime-local" name="stDate" value="datetime-local">
+        <div class="stat-date-label">
+        <label class="stat-label">Workout Date:
+            <input class="stat-date" type="datetime-local" name="stDate" value="datetime-local">
         </label><br>
+    </div>
         
          <% let workouts = r.rtWorkouts %>
          
          <% workouts.forEach(function (n) { %> 
-             <p> <%= n.name %> </p>
+             <p class="stat-label"> <%= n.name %> </p>
 
             <% let sets = n.sets %>
             <% let sText = 1 %>
             <% while (sets > 0) { %> 
                 <div>
-                <input type="text" placeholder="Set <%=sText%> Weight"class="sets" name="reps"> 
-                <input type="text" placeholder="Set <%=sText%> Reps"class="sets" name="weight">
+                <input type="text" placeholder="Set <%=sText%> Weight" class="stat-inputs" name="reps"> 
+                <input type="text" placeholder="Set <%=sText%> Reps" class="stat-inputs" name="weight">
                 
             </div> 
                 <% sText++ %>
@@ -38,8 +38,12 @@
 
          <% }) %>
     <% }) %> 
-            </br> 
-    <input type="submit" value="Submit Stats">
+
+    <input class="create-button" id="stat-submit-button" type="submit" value="Submit Stats">
+</div>
 </form>
+</div>
+
+
 </body>
 </html>

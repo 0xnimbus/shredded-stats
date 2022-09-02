@@ -1,47 +1,64 @@
 <%- include('../partials/header')  -%> 
 
-    <a href="/routines">Log Some Stats</a>
-    <h1> STATS </h1>
+<div class="root-div">
+    
+    
+    <div class="page-title">
+        <h1 class="page-title">STATS</h1>
+    </div>
 
    <% if (stats.length) { %>
+    <div class="div-text">
+
+    <a href="/routines" > <button class="create-button"> Log A Workout </button> </a> <br>
 
     <% stats.forEach(function(s){ %> 
-        
+        <div class="div-text">
         <% let counter = 1 %>
 
        <% s.stRoutine.forEach(function (r){ %> 
-                <h3> Routine Name: <%= r.rtName %>  </h3>
+        <div class="body-div">
+                <h3 class="routine-name"> Routine Name: <%= r.rtName %>  </h3>
 
                 
-                <p> Date: <%=s.stDate.toISOString()%> </p>
+                <p class="stat-data"> Date: <%=s.stDate.toISOString().substring(0,10)%> </p>
 
 
         <% r.rtWorkouts.forEach(function (w){ %>
-            
-            <h3> Workout: <%= w.name %> </h3> 
 
-            <div class="weight-div">
+            <div class="stats-w-bg">
+            
+            <h3 id="stat-title"> Workout: <%= w.name %> </h3> 
+
+        <table>
+            <tr> 
+            <div class="stat-table">
 
             <% let weights = s.weight %>
-            <% let wcounter = 1%>
-            <% let scounter = 1%>
+
+            <p class="stat-data">Weight</p>
 
             <% weights.forEach(function (kg) { %>            
-                    <p class="weight-p">Weight <%=wcounter%>: <%= kg %></p>
-                    <%wcounter++ %>
+                    <p class="reps"><%= kg %></p>
             <% }) %> 
 
         </div>
+    </tr>
 
-                <div class="weight-div">
+    <tr>
+                <div class="stat-table">
 
                 <% let reps = s.reps %>
+
+                <p class="stat-data">Reps</p>
+
                 <% reps.forEach(function (count) { %>       
-                    <p class="reps-p"> Reps <%=scounter%>: <%= count %></p>
+                    <p class="reps"> <%= count %></p>
                     <% }) %> 
-                    <% scounter++ %>
                 </div>
-                
+            </tr>
+        </table>
+    </div>
                 
             
         <% }) %>
@@ -49,15 +66,25 @@
       <%  }) %> 
     
         <% counter++ %> 
-
-        <form action="/stats/<%= s.id %>?_method=DELETE" class="delete-form" method="POST">
-            <button type="submit">X</button>
+        <div class="button-div">
+        <form action="/stats/<%= s.id %>?_method=DELETE" class="delete-button" method="POST">
+            <button type="submit" class="real-delete"> <div id="stat=del">Delete</div></button>
+        </div>
           </form>
 
+        
+        </div>
+    </div>
+    <h1> </h1>
     <%})%>
  <% } else { %>
-    <h1> NO STATS YET, GO WORKOUT! </h1> 
+    
+    <div class="div-text">
+    <h1 class="none"> NO STATS YET, GO WORKOUT! </h1> 
+    <a href="/routines"> <button class="create-button"> Log Some Stats </button></a>
+</div>
  <% } %>
 
+</div>
 </body>
 </html>

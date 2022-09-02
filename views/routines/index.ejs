@@ -1,37 +1,59 @@
 <%- include('../partials/header')  -%> 
 
-<div class="root-rt-div">
-    <a href="/routines/new">Create New Routine</a>
-
-    <h1> ROUTINES </h1>
+<div class="root-div">
+    
+    <div class="page-title">
+        <h1 class="page-title">ROUTINES</h1>
+    </div>
+    
     <% if (routines.length) { %>
+        <div class="div-text">
+            
+            <a href="/routines/new" > <button class="create-button"> Create New Routine </button> </a> <br>
         <% routines.forEach(function(r) { %>
             
-            <h3 class="r-name"> <%= r.rtName %> </h3> 
+            <div class="div-text">
+            <div class="body-div">
+            <div id="title-div"> 
+                <div class="counter">
+                <%= r.rtName %> 
+            </div>
+        </div> 
 
             <% r.rtWorkouts.forEach(function (w){ %>
+
                 <div class="rt-list">
                 <p class="lists"> Workout: <%= w.name %> </p> <br> 
                 <p class="lists"> Muscle Group: <%= w.muscleGroup %> </p> <br>
                 <p class="lists"> Sets: <%= w.sets %> </p> <br>
+                
             </div>
+            <div class="phantom"></div>
+        
            <% }) %> 
-
-           <a href="stats/<%=r.id%>/new"> Log A Workout! </a>
-            
-           <form action="/routines/<%= r.id %>?_method=DELETE" class="delete-form" method="POST">
-            <button type="submit">X</button>
+        
+        
+            <div class="button-div">
+           <a href="stats/<%=r.id%>/new" > <button class="update-button"> Log Workout</button> </a>
+           <form action="/routines/<%= r.id %>?_method=DELETE" class="delete-button" method="POST">
+            <button type="submit" class="real-delete">Delete</button>
+        </div>
           </form>
-          <a href="/routines/<%= r.id %>/update" > <button>Update</button> </a> <br>
-            
+           <br>
+        </div>
+    </div>
+    <h3> </h3>
             <% })%>  
 
             <% } else {%>
-
-                <h1> No routines yet </h1> 
+                <div class="div-text">
+                <a href="/routines/new" > <button class="create-button"> Create New Workout </button> </a> <br>
+                <h1 class="none"> No routines yet </h1> 
+            </div>
                 
                 <% }%>
             
             </div>
+        
 </body>
 </html>

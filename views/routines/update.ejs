@@ -1,7 +1,8 @@
 <%- include('../partials/header')  -%>    
 
+    <h1 class="page-title">UPDATE ROUTINE "<%=routines.rtName%>"</h1>
+
     <form action="/routines/<%=routines._id%>?_method=PUT" method="POST">
-        <h3> Update Routine "<%=routines.rtName%> </h3>
         <label>Routine Name:
             <input type="text" name="rtName" value="<%=routines.rtName%>">
         </label><br>

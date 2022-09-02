@@ -11,8 +11,8 @@ router.post('/', routinesCtrl.create)
 //GET deleteID 
 router.delete('/:id', routinesCtrl.delete)
 //GET update 
-router.get('/:id/update', routinesCtrl.findUpdate)
+//router.get('/:id/update', routinesCtrl.findUpdate)
 //PUT update
-router.put('/:id', routinesCtrl.update)
+//router.put('/:id', routinesCtrl.update)
 
 module.exports = router;

@@ -1,126 +1,123 @@
-const {Routine} = require("../models/workouts");
-const {Workout} = require("../models/workouts");
+        const {Routine} = require("../models/workouts");
+        const {Workout} = require("../models/workouts");
 
-module.exports = {
-    index,
-    new: newRoutine,
-    create,
-    delete: deleteOne,
-    update,
-    findUpdate,
-}
-
-//Render routines index
-function index(req, res) {
-    Routine.find({}, function (err, routines){
-        console.log(routines)
-        console.log('Render routines')
-        if (err) {
-            console.log('ROUTINES INDEX ERROR ' + err)
-            res.redirect('routines')
-        } else {
-            
-            res.render('routines/index', {routines})
+        module.exports = {
+            index,
+            new: newRoutine,
+            create,
+            delete: deleteOne,
+            //update,
+            findUpdate,
         }
 
-    })    
-  }
-
-  function newRoutine(req, res) {
-    console.log("Routine Form")
-    Workout.find({}, function (err, workouts){
-        if (err) {
-            console.log("ROUTINES CREATE WORKOUT FIND ERROR " + err)
-            res.redirect('routine')
-        } else {
-            console.log('GOING TO ROUTINES NEW WITH WORKOUTS: ' + workouts)
-            res.render('routines/new', {workouts})
-        }
-    })
-}
-
-function create(req, res) {
-    const routine = new Routine(req.body)
-    console.log("SUBMITTED INFO")
-    console.log(req.body)
-    Workout.find({name: req.body.rtWorkouts}, function (err, workouts){
-
-        routine.rtWorkouts = workouts
-
-        console.log('ROUTINE INFO ' + routine)
-        console.log('ROUTINE.RTWORKOUTS ' + routine.rtWorkouts)
-        console.log('WORKOUTS VAR ' + workouts)
-        routine.save(function (err){
-            if (err) {
-                console.log("ROUTINES CREATE ERROR " + err)
-                return res.render('routines/new', {workouts})
-            } else {
-                console.log(workouts)
-                console.log("ROUTINE SAVED" + routine)
-                Routine.find({}, function (err, routines) {
+        //Render routines index
+            function index(req, res) {
+                Routine.find({}, function (err, routines){
                     if (err) {
-                        return console.log('error ' + err)
+                        res.redirect('routines')
                     } else {
-                    console.log('IF render index')
-                    res.redirect('routines')
-                    }
-                  });
-                
-            }
-        })
-    })
-}
+                        res.render('routines/index', {routines}) 
+                    }      
+            })   
+        }
 
-async function deleteOne(req, res) {
-
-   await Routine.findByIdAndDelete(req.params.id)
-
-    res.redirect('/routines')
-    console.log("DELETE ONE WITH ID OF " + req.params.id) 
-}
-
-function findUpdate(req, res){
-    console.log('FIND UPDATE REQ PARAMS.ID')
-    console.log(req.params.id)
-
-    Routine.findById(req.params.id, function (err, routines){
-        if (err) {
-            console.log('FIND UPDATE ERROR ' + err)
-        } else {
-            console.log('FIND UPDATE WORKOUTS IS ')
-            console.log(routines)
+        function newRoutine(req, res) {
             Workout.find({}, function (err, workouts){
                 if (err) {
-                    console.log("ROUTINE FIND UPDATE WORKOUT FIND ERROR" + err)
-                    res.redirect('routines')
+                    res.redirect('routine')
                 } else {
-                    console.log('FIND UPDATE WORKOUTS IS ')
-                    console.log(workouts)
-                    res.render('routines/update', {routines, workouts})
+                    res.render('routines/new', {workouts})
+                }
+            })
+        }
+
+        function create(req, res) {
+            const routine = new Routine(req.body)
+            Workout.find({name: req.body.rtWorkouts}, function (err, workouts){
+
+                routine.rtWorkouts = workouts
+                routine.save(function (err){
+                    if (err) {
+                        console.log("ROUTINES CREATE ERROR " + err)
+                        return res.render('routines/new', {workouts})
+                    } else {
+                        Routine.find({}, function (err, routines) {
+                            if (err) {
+                                return console.log('error ' + err)
+                            } else {
+                            res.redirect('/routines')
+                            }
+                        });
+                        
+                    }
+                })
+            })
+        }
+
+        async function deleteOne(req, res) {
+
+        await Routine.findByIdAndDelete(req.params.id)
+
+            res.redirect('/routines')
+            console.log("DELETE ONE WITH ID OF " + req.params.id) 
+        }
+    
+        function findUpdate(req, res){
+            Routine.findById(req.params.id, function (err, routines){
+                if (err) {
+                } else {
+                    Workout.find({}, function (err, workouts){
+                        if (err) {
+                            res.redirect('routines')
+                        } else {
+                            res.render('routines/update', {routines, workouts})
+                        }
+                    })
+                    
                 }
             })
             
+            
         }
-    })
-    
-    
-}
 
-async function update(req, res) {
 
-    console.log('UPDATE FUNCTION HIT! REQ.BODY CONTAINS: ')
-    console.log(req.body)
+        //Could not get update to work
+        // async function update(req, res) {
+        //     let arr = []
+        //     arr = req.body.rtWorkouts
+        //     console.log(arr)
+        //     Routine.findById(req.params.id, function(err, routines) {
+        //         console.log('ROUTINES', routines)
+        //         arr.forEach(function (w){
 
-    // req.body.rtWorkouts.forEach(async function (w){
-    //     await 
-    // })
-   req.body.rtWorkouts.forEach(async function (w) {
+        //             function findMatch(w) {
+        //                 return w == routines.rtWorkouts._id
+        //             }
+        //             console.log(routines.rtWorkouts._id.find(findMatch))
+
+        //                 if (routines.rtWorkouts.find(findMatch)) {
+        //                     console.log('INCLUDES')
+        //                 } else if (req.body.rtWorkouts.includes(w) === false) {
+        //                     x = true 
+        //                     console.log('ELSE IF')
+        //                 } else {
+        //                     Workout.findById(w, function (err, workouts){
+        //                         if (err) {
+        //                         } else {
+        //                             console.log('ELSE')
+        //                             routines.rtWorkouts.push(workouts)
+        //                         }
+                                
+        //                     })
+        //                 }
+        //     })
+        //     routines.save(function (err){
+        //         if (err) {
+        //             res.redirect('routines')
+        //         } else {
+        //             res.redirect('/routines')
+        //         }
+        //     }) 
+        // })
     
-   })
-   await Routine.findById(req.params.id, {rtName: req.body.rtName})
-   
-   
-   
-   
-   res.redirect('/routines')
-}
+        // }

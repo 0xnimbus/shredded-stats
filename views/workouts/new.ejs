@@ -1,11 +1,26 @@
 <%- include('../partials/header')  -%> 
 
+<div id="create-title">
+    <h1 class="page-title" id="create-title">CREATE A WORKOUT</h1>
+</div>
+
+<div class="root-div">
+    <div class="div-text"> 
+
+
+    
     <form action="/workouts" method="POST">
-        <label>Enter Workout Name:
-            <input type="text" name="name">
-        </label><br>
-        <label> Select Muscle Group:
-            <select name="muscleGroup">
+        <div class="body-div">
+        <div class="input-div">
+            <label class="input-label">Enter Workout Name:
+                <input type="text" name="name" class="inputs">
+            </label><br>
+        </div>
+        <div class="input-div">
+        <label class="input-label"> Select Muscle Group:
+            
+            <div class="select-div">
+            <select name="muscleGroup" class="select">
                 <option value="Back">Back</option>
                 <option value="Biceps">Biceps</option>
                 <option value="Chest">Chest</option>
@@ -15,11 +30,21 @@
                 <option value="Abs">Abs</option>
                 <option value="Misc">Misc</option>
             </select>
+        </div>
+
         </label><br>
-        <label>Enter Amount of Sets:
-            <input type="text" name="sets">
+    </div>
+    <div class="input-div">
+        <label class="input-label">Enter Amount of Sets:
+            <input type="text" name="sets" class="inputs">
         </label><br>
-        <input type="submit" value="Submit Workout">
+        <div id="wk-submit-button">
+        <input type="submit" value="Submit Workout" id="submit-button" class="create-button"> 
+    </div>
+        </div>
+    </div>
     </form>
+</div>
+</div>
 </body>
 </html>
