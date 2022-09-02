@@ -31,7 +31,7 @@
 ## Getting Started 
 [Click here to use the app on Heroku](https://shredded-stats.herokuapp.com/)  
 
-## Project Planning Was Done With Notion 
+## Future Plans 
 [Click Here To View Board](https://i.imgur.com/OegiKYu.png)  
 
 ### -There is a bug right now that I am aware of so that would be the highest urgency task. 
